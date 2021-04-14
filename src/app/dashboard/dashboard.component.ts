@@ -33,21 +33,26 @@ export class DashboardComponent implements OnInit {
 	
   }
 
-  heroDetailsLoaded(){
+  async heroDetailsLoaded(){
 	  this.isLoading = false;
 	  this.showLoader = "display:none";
-	  this.sleep(2000);
+	  this.keepBusy(5000);
+	//   await this.sleep(5000);
 	  this.heroDetail = null;
 	  this.cdRef.detectChanges();
 	  
   }
   
-  sleep(milliseconds) {
+  keepBusy(milliseconds) {
 	var start = new Date().getTime();
 	for (var i = 0; i < 1e7; i++) {
 	  if ((new Date().getTime() - start) > milliseconds){
 		break;
 	  }
 	}
+  }
+
+  sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
