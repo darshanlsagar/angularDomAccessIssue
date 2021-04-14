@@ -1,0 +1,10 @@
+<div *ngIf="isLoading" id="pause" class="d-flex align-items-center justify-content-center">
+	<div id="spinner"></div>
+</div>
+<h2>Top Heroes</h2>
+<div class="heroes-menu">
+  <a *ngFor="let hero of heroes" (click)="clickAction(hero)">
+    {{hero.name}}
+  </a>
+</div>
+<app-hero-detail *ngIf="heroDetail" [hero]="heroDetail" (detailLoadedEvent)="heroDetailsLoaded()"></app-hero-detail>
