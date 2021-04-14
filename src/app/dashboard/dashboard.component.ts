@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
   heroDetail: Hero;
   isLoading:boolean = false;
+  showLoader: string = "display:none";
 
   constructor(private heroService: HeroService, private cdRef:ChangeDetectorRef) { }
 
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
   clickAction(hero:Hero){
 	  if(!this.heroDetail){
 		this.isLoading = true;
+		this.showLoader = "display:block";
 	  }
 	this.heroDetail = hero;
 	
@@ -33,6 +35,7 @@ export class DashboardComponent implements OnInit {
 
   heroDetailsLoaded(){
 	  this.isLoading = false;
+	  this.showLoader = "display:none";
 	  this.sleep(2000);
 	  this.heroDetail = null;
 	  this.cdRef.detectChanges();
